@@ -25,7 +25,15 @@ class Instructor extends Person {
   grade(student, subject) {
     return `${student} recives a perfect score on ${subject}`
   }
+  ranAddorSub(student) {
+    let sign, pointsAddOrSub;
+    pointsAddOrSub = Math.floor((Math.random()) * 10); // can be between 0 and 9 points
+    (Math.random() < .5)? sign = '+': sign = '-'; //will either be added or subtracted based on sign.
+    (sign === '+')? student.grade += pointsAddOrSub: student.grade -= pointsAddOrSub;
+    return `${student.name} now has this grade ${student.grade}`
+  }
 }
+
 
 class Student extends Person {
   constructor (studentAttrs){
@@ -33,6 +41,7 @@ class Student extends Person {
     this.previousBackground = studentAttrs.previousBackground;
     this.className = studentAttrs.className;
     this.favSubjects = studentAttrs.favSubjects;
+    this.grade = studentAttrs.grade; //grade added
   }
   listSubjects() {
     this.favSubjects.forEach(subject => console.log(subject));
@@ -42,6 +51,9 @@ class Student extends Person {
   }
   sprintChallenge(subject){
     return `${this.name} has begun sprint challenge on ${subject}` //??
+  }
+  graduate(){
+    return (this.grade > 70)?`${this.name} has graduated from Lambda with a score of ${this.grade}`: `${this.name} does not have a high enough score to graduate from Lambda with a score of ${this.grade}`
   }
 }
 
@@ -54,6 +66,9 @@ class ProjectManager extends Instructor {
   }
   standUp(slackChannel) {
     return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}'`
   }
 }
 
@@ -98,7 +113,7 @@ const todd = new Student ({
   className: 'Web19',
   previousBackground: 'Chemical Operator',
   favSubjects: ['HTML', 'JavaScript', 'Python'],
-
+  grade: 60
 })
 
 const sarah  = new Student ({
@@ -109,7 +124,7 @@ const sarah  = new Student ({
   className: 'Web15',
   previousBackground: 'College Student',
   favSubjects: ['Java', 'Python'],
-
+  grade: 85
 })
 
 const norah = new Student ({
@@ -120,7 +135,7 @@ const norah = new Student ({
   className: 'Web18',
   previousBackground: 'Waitress',
   favSubjects: ['Css', 'HTML', 'Python'],
-
+  grade: 75
 })
 
 
@@ -174,3 +189,20 @@ console.log(barney.catchPhrase)
 console.log(jamie.speak());
 console.log(dave);
 console.log(tim.standUp('zoom11423'));
+
+console.log(fred.ranAddorSub(todd)); //teacher randomly taking or giving points....
+console.log(fred.ranAddorSub(todd));
+console.log(fred.ranAddorSub(todd));
+console.log(fred.ranAddorSub(todd));
+
+console.log(jamie.debugsCode(todd, 'HTML'));
+
+console.log(jamie.grade('Sarah', 'JavaScript' ));
+console.log(jamie.ranAddorSub(norah)) //PM's able to use to random add or subtract students scores... inherited
+console.log(tim.ranAddorSub(sarah)); //from instructors.....
+console.log(dave.ranAddorSub(sarah));
+
+
+console.log(todd.graduate());
+console.log(sarah.graduate());
+console.log(norah.graduate());
