@@ -20,9 +20,10 @@ class Instructor extends Person {
     this.catchPhrase = instructorAttrs.catchPhrase;
   }
   demo(subject){
-    return `Today we are learning about ${subject}`   //??
+    return `Today we are learning about ${subject}`
   }
-  grade(student, subject) { //??
+  grade(student, subject) {
+    return `${student} recives a perfect score on ${subject}`
   }
 }
 
@@ -45,7 +46,7 @@ class Student extends Person {
 }
 
 
-class Project Manager extends Instructor {
+class ProjectManager extends Instructor {
   constructor(pmAttrs){
     super(pmAttrs);
     this.gradClassName = pmAttrs.gradClassName;
@@ -121,3 +122,55 @@ const norah = new Student ({
   favSubjects: ['Css', 'HTML', 'Python'],
 
 })
+
+
+const tim = new ProjectManager ({
+  name: 'Tim',
+  age: 45,
+  location: 'Dallas',
+  gender: 'male',
+  gradClassName: 'Web4',
+  favInstructor: 'Jill'
+})
+
+const dave = new ProjectManager ({
+  name: 'Dave',
+  age: 55,
+  location: 'Belleville',
+  gender: 'male',
+  gradClassName: 'Web2',
+  favInstructor: 'Barney'
+})
+
+const jamie = new ProjectManager ({
+  name: 'Jamie',
+  age: 29,
+  location: 'Pittsburgh',
+  gender: 'female',
+  gradClassName: 'Web10',
+  favInstructor: 'fred'
+})
+
+//testing students console.logs//
+console.log(todd)
+console.log(todd.speak())
+todd.listSubjects()  //not console.log because method does that.
+console.log(todd.PRAssignment('JavaScript-IV'));
+console.log(norah.sprintChallenge('Css'));
+console.log(sarah)
+sarah.listSubjects(); //not console.log because method does that
+norah.listSubjects(); //not console.log because method does that
+console.log(norah.speak())
+
+//testing Instructors
+console.log(fred);
+console.log(fred.speak());
+console.log(jill.demo('HTML'));
+console.log(fred.grade('Sarah', 'JavaScript' ))
+console.log(barney.catchPhrase)
+
+//testing pm
+
+console.log(jamie.speak());
+console.log(dave);
+console.log(tim.standUp('zoom11423'));
